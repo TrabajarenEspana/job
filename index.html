@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RemotoPerú | Trabajos Freelance y Remotos Exclusivos</title>
+    <meta name="description" content="Encuentra los mejores trabajos remotos y freelance en Perú. Únete a nuestra red de profesionales. Exclusivo para mayores de 24 años.">
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Light Blue
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            500: '#f59e0b', // Amber
+                            600: '#d97706',
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(12, 74, 110, 0.9), rgba(2, 132, 199, 0.8)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                        'cta-pattern': "linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animaciones personalizadas */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Efecto de cristal (Glassmorphism) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-600 bg-slate-50 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-brand-600 text-white rounded-lg flex items-center justify-center font-heading font-bold text-xl shadow-lg shadow-brand-500/30">
+                        RP
+                    </div>
+                    <span class="font-heading font-bold text-2xl text-slate-800 tracking-tight">Remoto<span class="text-brand-600">Perú</span></span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#beneficios" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Beneficios</a>
+                    <a href="#requisitos" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Requisitos</a>
+                    <a href="#categorias" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Especialidades</a>
+                    <a href="#testimonios" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Testimonios</a>
+                    <a href="#aplicar" class="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:-translate-y-0.5">
+                        Postular Ahora
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-600 focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil (Oculto por defecto) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#beneficios" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Beneficios</a>
+                <a href="#requisitos" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Requisitos</a>
+                <a href="#categorias" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Especialidades</a>
+                <a href="#testimonios" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-600">Testimonios</a>
+                <a href="#aplicar" class="mt-4 w-full text-center bg-brand-600 text-white px-6 py-3 rounded-xl font-medium shadow-md">Postular Ahora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Texto Hero -->
+                <div class="text-left fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-semibold mb-6">
+                        <span class="relative flex h-3 w-3">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-500 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-500"></span>
+                        </span>
+                        Conectando talento peruano con el mundo
+                    </div>
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        Libertad para trabajar, <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-500 to-yellow-300">vivir y ganar</span> desde Perú.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brand-100 mb-8 max-w-2xl font-light">
+                        Oportunidades de trabajo remoto y freelance con empresas globales. Diseñado exclusivamente para profesionales independientes <strong>mayores de 24 años</strong> con sede en Perú.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#aplicar" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-accent-500/30 hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                            Ver Ofertas Disponibles <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#requisitos" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all hover:-translate-y-1 text-center flex items-center justify-center">
+                            Conocer Requisitos
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center gap-6 text-white/80 text-sm font-medium">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-accent-500"></i>
+                            <span>Pagos en USD</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-accent-500"></i>
+                            <span>100% Remoto</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-accent-500"></i>
+                            <span>Horarios Flexibles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen Hero / Tarjeta Flotante -->
+                <div class="hidden lg:block relative fade-in-up delay-200">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-600 to-accent-500 rounded-3xl transform rotate-3 scale-105 opacity-50 blur-lg"></div>
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profesional trabajando remoto desde casa" class="w-full h-[500px] object-cover">
+                        
+                        <!-- Etiqueta Flotante -->
+                        <div class="absolute bottom-6 left-6 right-6 glass-card rounded-2xl p-4 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-slate-800">Crecimiento Asegurado</p>
+                                <p class="text-xs text-slate-500">Gana experiencia internacional sin dejar tu país.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ola decorativa abajo -->
+        <div class="absolute bottom-0 w-full leading-none z-10 text-slate-50">
+            <svg class="block w-full h-12 md:h-24 lg:h-32" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="currentColor" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section id="beneficios" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h2 class="text-brand-600 font-bold tracking-wide uppercase text-sm mb-2">Por qué elegirnos</h2>
+                <h3 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">El futuro del trabajo ya está aquí</h3>
+                <p class="text-lg text-slate-600">Descubre las ventajas de pertenecer a una red global de freelancers operando desde la comodidad de tu hogar en Perú.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tarjeta 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 border border-slate-100 fade-in-up delay-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-globe-americas text-brand-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900 mb-3">Alcance Global</h4>
+                    <p class="text-slate-600 leading-relaxed">Trabaja con startups y empresas consolidadas de Estados Unidos, Europa y toda Latinoamérica. Tu talento no tiene fronteras.</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 border border-slate-100 fade-in-up delay-200">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-wallet text-accent-500 text-2xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900 mb-3">Ingresos en Dólares</h4>
+                    <p class="text-slate-600 leading-relaxed">Protege tu economía y aumenta tu poder adquisitivo recibiendo honorarios competitivos internacionalmente en USD.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg shadow-slate-200/50 hover:-translate-y-2 transition-all duration-300 border border-slate-100 fade-in-up delay-300">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-balance-scale text-emerald-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold text-slate-900 mb-3">Equilibrio Ideal</h4>
+                    <p class="text-slate-600 leading-relaxed">Olvídate del tráfico limeño o los largos traslados. Gestiona tu propio tiempo y disfruta más de tu familia y hobbies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisitos Section (El Core de la solicitud) -->
+    <section id="requisitos" class="py-20 bg-white border-y border-slate-100 overflow-hidden relative">
+        <!-- Decoración de fondo -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-brand-50 blur-3xl opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-accent-50 blur-3xl opacity-50 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="order-2 lg:order-1 relative fade-in-up delay-100">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Joven profesional en videollamada" class="w-full h-auto object-cover">
+                        <!-- Sello de exclusividad -->
+                        <div class="absolute top-6 right-6 bg-accent-500 text-white w-24 h-24 rounded-full flex flex-col items-center justify-center shadow-lg transform rotate-12 border-4 border-white">
+                            <span class="font-heading font-black text-2xl leading-none">24+</span>
+                            <span class="text-xs font-bold uppercase tracking-wider">Años</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 fade-in-up">
+                    <h2 class="text-brand-600 font-bold tracking-wide uppercase text-sm mb-2">Perfil Ideal</h2>
+                    <h3 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-6">Buscamos talento maduro y comprometido</h3>
+                    <p class="text-lg text-slate-600 mb-8">
+                        Nuestra red está diseñada para conectar empresas de alto nivel con profesionales que demuestran responsabilidad y experiencia. Por ello, tenemos requisitos claros para garantizar la calidad de nuestros servicios.
+                    </p>
+
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center mt-1">
+                                <i class="fas fa-id-card text-brand-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-heading text-xl font-bold text-slate-900">Mayor de 24 años (Requisito Indispensable)</h4>
+                                <p class="mt-1 text-slate-600">Valoramos la madurez profesional y personal. Este filtro nos permite asegurar a nuestros clientes un nivel de compromiso excepcional.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mt-1">
+                                <i class="fas fa-map-marker-alt text-red-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-heading text-xl font-bold text-slate-900">Residencia en Perú</h4>
+                                <p class="mt-1 text-slate-600">Las vacantes actuales están enfocadas exclusivamente en talento ubicado dentro del territorio peruano, aprovechando nuestro huso horario estratégico (PET / EST).</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                                <i class="fas fa-wifi text-green-600 text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-heading text-xl font-bold text-slate-900">Espacio de Trabajo Adecuado</h4>
+                                <p class="mt-1 text-slate-600">Conexión a internet estable (mínimo 50 Mbps), computadora propia y un ambiente tranquilo para realizar videollamadas.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorias Section -->
+    <section id="categorias" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h3 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">¿En qué áreas hay oportunidades?</h3>
+                <p class="text-lg text-slate-600">Tenemos proyectos continuos y puestos a tiempo completo para diferentes perfiles profesionales.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Cat 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md hover:border-brand-200 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 mx-auto bg-slate-50 group-hover:bg-brand-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-laptop-code text-2xl text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">Desarrollo Web & IT</h4>
+                    <p class="text-sm text-slate-500 mt-2">Frontend, Backend, QA</p>
+                </div>
+                
+                <!-- Cat 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md hover:border-brand-200 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 mx-auto bg-slate-50 group-hover:bg-brand-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-paint-brush text-2xl text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">Diseño & Creatividad</h4>
+                    <p class="text-sm text-slate-500 mt-2">UI/UX, Gráfico, Video</p>
+                </div>
+
+                <!-- Cat 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md hover:border-brand-200 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 mx-auto bg-slate-50 group-hover:bg-brand-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-bullhorn text-2xl text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">Marketing Digital</h4>
+                    <p class="text-sm text-slate-500 mt-2">SEO, Ads, Redes Sociales</p>
+                </div>
+
+                <!-- Cat 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center hover:shadow-md hover:border-brand-200 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 mx-auto bg-slate-50 group-hover:bg-brand-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                        <i class="fas fa-headset text-2xl text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800">Soporte y Asistencia</h4>
+                    <p class="text-sm text-slate-500 mt-2">Atención al Cliente, Asistente Virtual</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#aplicar" class="inline-flex items-center text-brand-600 font-bold hover:text-brand-700 transition-colors">
+                    Ver todas las categorías <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section id="testimonios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">Casos de Éxito en Perú</h3>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-200 absolute top-6 left-6 opacity-50"></i>
+                    <div class="relative z-10">
+                        <p class="text-slate-600 italic mb-6">"Cumplir 24 años y encontrar esta plataforma fue lo mejor. Como diseñadora en Arequipa, pensaba que debía mudarme a Lima. Ahora trabajo para una agencia en Miami ganando el triple de lo que me ofrecían localmente."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Valeria" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h5 class="font-bold text-slate-900">Valeria M. (26)</h5>
+                                <p class="text-sm text-brand-600">Diseñadora UX/UI - Arequipa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-200 absolute top-6 left-6 opacity-50"></i>
+                    <div class="relative z-10">
+                        <p class="text-slate-600 italic mb-6">"El requisito de edad me dio confianza porque sabía que entraría a una red seria. Llevo 2 años como desarrollador frontend remoto desde Cusco, manejando mis propios horarios."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Carlos" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h5 class="font-bold text-slate-900">Carlos R. (29)</h5>
+                                <p class="text-sm text-brand-600">Desarrollador Web - Cusco</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-slate-50 p-8 rounded-2xl relative">
+                    <i class="fas fa-quote-left text-4xl text-brand-200 absolute top-6 left-6 opacity-50"></i>
+                    <div class="relative z-10">
+                        <p class="text-slate-600 italic mb-6">"Trabajar como asistente virtual bilingüe me ha permitido independizarme. El proceso de selección valora mucho la madurez, y el pago en dólares llega puntual cada mes a mi cuenta en Perú."</p>
+                        <div class="flex items-center gap-4">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Sofia" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h5 class="font-bold text-slate-900">Sofía L. (25)</h5>
+                                <p class="text-sm text-brand-600">Asistente Virtual - Lima</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Formulario Aplicacion -->
+    <section id="aplicar" class="py-24 bg-cta-pattern bg-cover bg-center relative">
+        <div class="absolute inset-0 bg-brand-900/90 mix-blend-multiply"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-accent-500/20 text-accent-400 border border-accent-500/30 font-semibold text-sm mb-6">
+                Plazas limitadas para este mes
+            </span>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-6">
+                ¿Tienes más de 24 años y vives en Perú?
+            </h2>
+            <p class="text-xl text-brand-100 mb-10 font-light">
+                Da el primer paso hacia tu libertad profesional. Completa tu perfil y te conectaremos con las mejores oportunidades remotas.
+            </p>
+            
+            <div class="bg-white rounded-3xl p-8 md:p-12 text-left shadow-2xl">
+                <h3 class="font-heading text-2xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">Aplica en menos de 2 minutos</h3>
+                
+                <form onsubmit="event.preventDefault(); showSuccessMessage();" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Nombre Completo</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none" placeholder="Ej. Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Correo Electrónico</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none" placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Edad (Mínimo 24)</label>
+                            <input type="number" min="24" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none" placeholder="24">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Ciudad en Perú</label>
+                            <select required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none bg-white">
+                                <option value="">Selecciona tu ciudad...</option>
+                                <option value="lima">Lima</option>
+                                <option value="arequipa">Arequipa</option>
+                                <option value="trujillo">Trujillo</option>
+                                <option value="cusco">Cusco</option>
+                                <option value="piura">Piura</option>
+                                <option value="otro">Otra ciudad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Área de Especialidad</label>
+                        <select required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all outline-none bg-white">
+                            <option value="">Selecciona tu área...</option>
+                            <option value="tech">Tecnología / Programación</option>
+                            <option value="design">Diseño / Multimedia</option>
+                            <option value="marketing">Marketing Digital</option>
+                            <option value="admin">Soporte / Asistencia Virtual</option>
+                            <option value="other">Otra</option>
+                        </select>
+                    </div>
+
+                    <!-- Mensaje de Éxito (Oculto por defecto) -->
+                    <div id="success-msg" class="hidden bg-green-50 text-green-700 p-4 rounded-xl border border-green-200 flex items-center gap-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span>¡Gracias por aplicar! Revisaremos tu perfil y te contactaremos por correo en las próximas 48 horas.</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/30 hover:-translate-y-1">
+                        Crear mi Perfil Profesional
+                    </button>
+                    
+                    <p class="text-xs text-center text-slate-500 mt-4">
+                        Al hacer clic, aceptas que eres mayor de 24 años, resides en Perú y aceptas nuestros <a href="#" class="text-brand-600 underline">Términos y Condiciones</a>.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-600 text-white rounded-lg flex items-center justify-center font-heading font-bold text-sm">
+                            RP
+                        </div>
+                        <span class="font-heading font-bold text-xl text-white tracking-tight">Remoto<span class="text-brand-500">Perú</span></span>
+                    </div>
+                    <p class="text-sm max-w-sm mb-6">Empoderando al talento peruano. Conectamos a profesionales experimentados mayores de 24 años con las mejores empresas globales para trabajos 100% remotos.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#beneficios" class="hover:text-brand-400 transition-colors">Beneficios</a></li>
+                        <li><a href="#requisitos" class="hover:text-brand-400 transition-colors">Requisitos</a></li>
+                        <li><a href="#categorias" class="hover:text-brand-400 transition-colors">Especialidades</a></li>
+                        <li><a href="#testimonios" class="hover:text-brand-400 transition-colors">Casos de Éxito</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Soporte</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Términos del Servicio</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-sm text-center flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; 2026 RemotoPerú. Todos los derechos reservados.</p>
+                <p class="mt-2 md:mt-0">Hecho con <i class="fas fa-heart text-red-500 mx-1"></i> en Perú</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts para interactividad -->
+    <script>
+        // Lógica del Menú Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer click en un enlace
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Cambiar estilo del navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/90', 'bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/90');
+            }
+        });
+
+        // Simulación de envío de formulario sin alertas
+        function showSuccessMessage() {
+            const successMsg = document.getElementById('success-msg');
+            const form = document.querySelector('form');
+            
+            successMsg.classList.remove('hidden');
+            
+            // Limpiar inputs después de 1 segundo para dar la sensación de envío
+            setTimeout(() => {
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+            }, 1000);
+            
+            // Ocultar el mensaje después de 5 segundos
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
